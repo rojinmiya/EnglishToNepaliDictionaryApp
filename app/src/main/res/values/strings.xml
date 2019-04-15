@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EnglishToNepaliDictionaryApp</string>
+    <string-array name="english">
+        <item>timro naam k ho</item>
+        <item>mero ghar gorkha ho</item>
+        <item>ma kta ho</item>
+        <item>mero aauta sathi xa</item>
+        <item>mero naam rojin ho</item>
+    </string-array>
+</resources>
