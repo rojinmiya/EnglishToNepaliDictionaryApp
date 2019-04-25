@@ -8,6 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +37,9 @@ public class EnglishToNepaliDictionary extends AppCompatActivity {
 
         lstDictionary = findViewById(R.id.lstDictionary);
         dictionary = new HashMap<>();
-        for (int i = 0; i < words.length; i += 2) {
+        /*for (int i = 0; i < words.length; i += 2) {
             dictionary.put(words[i], words[i + 1]);
-        }
+        }*/
         ArrayAdapter english = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 new ArrayList<String>(dictionary.keySet())
@@ -55,4 +61,23 @@ public class EnglishToNepaliDictionary extends AppCompatActivity {
 
 
     }
+    private void readFromFile(){
+        try {
+            FileInputStream fos=openFileInput("words.txt");
+            InputStreamReader isr=new InputStreamReader(fos);
+            BufferedReader br=new BufferedReader(isr);
+            String line="";
+            while((line=br.readLine())!=null){
+                String[] parts=line.split("->");
+                dictionary.put(parts[0],parts[1]);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
